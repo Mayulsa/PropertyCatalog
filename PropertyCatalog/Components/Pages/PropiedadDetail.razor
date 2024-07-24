@@ -1,0 +1,38 @@
+﻿@page "/productdetail/{productId:int}"
+@using PropertyCatalog.Models
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+@code {
+    [Parameter]
+    public int ProductId { get; set; }
+
+    private Propiedad selectedPropiedad;
+
+    protected override void OnInitialized()
+    {
+        // Here, you should fetch the product details using the ProductId
+        // For simplicity, we'll use a static list as an example
+        var propiedades = new List<Propiedad>
+        {
+            new Propiedad { Id = 1, Name = "The Baconatorizor", BasePrice =  11.99M, Description = "It has EVERY kind of bacon", ImageUrl="https://www.decorfacil.com/wp-content/uploads/2017/09/20170907decoracao-de-apartamento-53.jpg"},
+            new Propiedad { Id = 2, Name = "Buffalo chicken", BasePrice =  12.75M, Description = "Spicy chicken, hot sauce, and blue cheese, guaranteed to warm you up", ImageUrl="img/pizzas/meaty.jpg"},
+            new Propiedad { Id = 3, Name = "Veggie Delight", BasePrice =  11.5M, Description = "It's like salad, but on a pizza", ImageUrl="img/pizzas/salad.jpg"},
+            new Propiedad { Id = 4, Name = "Margherita", BasePrice =  9.99M, Description = "Traditional Italian pizza with tomatoes and basil", ImageUrl="img/pizzas/margherita.jpg"},
+            new Propiedad { Id = 5, Name = "Basic Cheese Pizza", BasePrice =  11.99M, Description = "It's cheesy and delicious. Why wouldn't you want one?", ImageUrl="img/pizzas/cheese.jpg"},
+            new Propiedad { Id = 6, Name = "Classic pepperoni", BasePrice =  10.5M, Description = "It's the pizza you grew up with, but Blazing hot!", ImageUrl="img/pizzas/pepperoni.jpg" }
+        };
+
+        selectedPropiedad = propiedades.FirstOrDefault(p => p.Id == ProductId);
+    }
+}
+
+
+<h3>@selectedPropiedad?.Name</h3>
+@if (selectedPropiedad != null)
+{
+    <p>@selectedPropiedad.Description</p>
+    <p>Price: @selectedPropiedad.BasePrice.ToString("C")</p>
+    <img src="@selectedPropiedad.ImageUrl" alt="@selectedPropiedad.Name" />
+}
+

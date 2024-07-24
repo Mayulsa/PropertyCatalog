@@ -1,0 +1,12 @@
+﻿@page "/DataBind"
+@rendermode InteractiveServer
+
+<h3>DataBind</h3>
+
+<input @bind="text" />
+<button @onclick="() => text = string.Empty">Clear</button>
+<p>@text</p>
+
+@code {
+    string text = "";
+}
