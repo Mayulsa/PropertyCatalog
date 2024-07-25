@@ -12,8 +12,6 @@
 
         public string ImageUrl { get; set; }
 
-        public string? Habitaciones { get; set;}
-
         public string GetFormattedBasePrice() => BasePrice.ToString("0.00");
 
     }
